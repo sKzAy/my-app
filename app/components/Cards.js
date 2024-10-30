@@ -6,6 +6,8 @@ import { useState } from 'react'
 const Cards = () => {
   const InputRef = useRef()
   const InputRef2 = useRef()
+
+
   const [player, setPlayer] = useState({
     "name": "granis",
     "steamid": "38142345",
@@ -32,32 +34,54 @@ const Cards = () => {
   })
 
 
-  function handleClick() {
-    let z = parseInt(InputRef.current.value)
-    handleFetch(z)
+
+// HANDLE CLICK 1
+  const handleClick = () => {
+    const inputValue = parseInt(InputRef.current.value, 10); // Ensure it's an integer
+    if (inputValue > 0 && inputValue <= 300000) {
+      fetchData(inputValue);
+    } else {
+      alert("Please enter an ayah number between 1 and 300000");
+      InputRef.current.value = "";
+    }
+  };
+  const handleClick2 = () => {
+    const inputValue = parseInt(InputRef2.current.value, 10); // Ensure it's an integer
+    if (inputValue > 0 && inputValue <= 300000) {
+      fetchData2(inputValue);
+    } else {
+      alert("Please enter an ayah number between 1 and 300000");
+      InputRef2.current.value = "";
+    }
+  };
+
+
+
+  // FETCHING
+  async function fetchData(rank) {
+    try {
+      const response = await fetch(`https://surfheaven.eu/api/rank/${rank}`);
+      const data = await response.json();
+      setPlayer(data[0]);
+    } catch (error) {
+      alert("Error, enter a approriate rank");
+    }
+    InputRef.current.value = ""
   }
-  function handleClick2() {
-    let d = parseInt(InputRef2.current.value)
-    handleFetch2(d)
+  async function fetchData2(rank2) {
+    try {
+      const response = await fetch(`https://surfheaven.eu/api/rank/${rank2}`);
+      const data = await response.json();
+      setPlayer2(data[0]);
+    } catch (error) {
+      alert("Error, enter a approriate rank");
+    }
+    InputRef2.current.value = ""
   }
 
-  async function handleFetch(rank) {
-    let b = await fetch(`https://surfheaven.eu/api/rank/${rank}`)
-    let c = await b.json()
-    console.log(c)
-    setPlayer(c)
 
 
-  }
-  async function handleFetch2(rank2) {
-    let e = await fetch(`https://surfheaven.eu/api/rank/${rank2}`)
-    let f = await e.json()
-    console.log(f)
-    setPlayer2(f)
-
-
-  }
-
+  // JSX
 
 
   return (
@@ -68,7 +92,7 @@ const Cards = () => {
             {/* SEARCHER */}
 
             <div className='text-center'>
-              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search 1</button></div>
+              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
             </div>
             {/* CARD 1 */}
             <div className=' flex justify-center align-middle pt-10'>
@@ -80,15 +104,15 @@ const Cards = () => {
             <p className=' font-bold text-center text-white text-xl'>Points: {player.points}</p>
             <p className=' font-bold text-center text-white text-xl'>Maps Completed: {player.mapscompleted}</p>
             <p className=' font-bold text-center text-white text-xl'>VIP Status: {player.vip}</p>
-            <p className=' font-bold text-center text-white text-xl'>First Played: {player.firstseen}</p>
-            <p className=' font-bold text-center text-white text-xl'>Last Played: {player.lastplay}</p>
+            <p className=' font-bold text-center text-white text-xl'>First Played: {player.firstseen.substring(0,10)}</p>
+            <p className=' font-bold text-center text-white text-xl'>Last Played: {player.lastplay.substring(0,10)}</p>
           </div>
-
+        
           <div className="Card1 pt-10 h-[70vh] w-[40vw] bg-gray-800 border-none rounded-xl">
             {/* SEARCHER */}
 
             <div className='text-center'>
-              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search 2</button></div>
+              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
             </div>
             {/* CARD 1 */}
             <div className=' flex justify-center align-middle pt-10'>
@@ -100,8 +124,8 @@ const Cards = () => {
             <p className=' font-bold text-center text-white text-xl'>Points: {player2.points}</p>
             <p className=' font-bold text-center text-white text-xl'>Maps Completed: {player2.mapscompleted}</p>
             <p className=' font-bold text-center text-white text-xl'>VIP Status: {player2.vip}</p>
-            <p className=' font-bold text-center text-white text-xl'>First Played: {player2.firstseen}</p>
-            <p className=' font-bold text-center text-white text-xl'>Last Played: {player2.lastplay}</p>
+            <p className=' font-bold text-center text-white text-xl'>First Played: {player2.firstseen.substring(0,10)}</p>
+            <p className=' font-bold text-center text-white text-xl'>Last Played: {player2.lastplay.substring(0,10)}</p>
           </div>
 
 
