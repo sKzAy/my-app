@@ -2,6 +2,10 @@
 import React from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
+import Link from 'next/link'
+import "@/app/globals.css"
+import Footer from './Footer'
+
 
 const Cards = () => {
   const InputRef = useRef()
@@ -41,7 +45,7 @@ const Cards = () => {
     if (inputValue > 0 && inputValue <= 300000) {
       fetchData(inputValue);
     } else {
-      alert("Please enter an ayah number between 1 and 300000");
+      alert("Please enter a rank between 1 and 300000");
       InputRef.current.value = "";
     }
   };
@@ -50,7 +54,7 @@ const Cards = () => {
     if (inputValue > 0 && inputValue <= 300000) {
       fetchData2(inputValue);
     } else {
-      alert("Please enter an ayah number between 1 and 300000");
+      alert("Please enter a rank between 1 and 300000");
       InputRef2.current.value = "";
     }
   };
@@ -86,16 +90,24 @@ const Cards = () => {
 
   return (
     <>
-      <div className=" bg-slate-900 h-[100vh] w-[98.5vw] pt-5">
-        <div className='flex justify-center align-middle gap-24'>
-          <div className="Card1 pt-10 h-[70vh] w-[40vw] bg-gray-800 border-none rounded-xl">
+      <div className="parent bg-slate-900 h-[100vh] w-full pt-5">
+        <div className='flex justify-center align-middle gap-4'>
+         <Link href="/"> <button className='bg-orange-500 border-none rounded-full p-2 text-center text-white font-bold
+          mb-4'>Profiles</button></Link>
+         <Link href="/maps"> <button className='bg-orange-500 border-none rounded-full p-2 text-center text-white font-bold
+          mb-4'>Map Comparison</button></Link>
+        </div>
+        <div className="both-cards-parent">
+        <div className='both-cards flex justify-center align-middle gap-24'>
+          
+          <div className="Card pt-10 h-[70vh] w-[40vw] bg-gray-800 border-none rounded-xl">
             {/* SEARCHER */}
 
-            <div className='text-center'>
-              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
+            <div className='search text-center'>
+              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef} type="text" placeholder='Enter Player Rank' className='input text-center rounded-xl w-[15vw]' /><button onClick={handleClick} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
             </div>
             {/* CARD 1 */}
-            <div className=' flex justify-center align-middle pt-10'>
+            <div className='main-card flex justify-center align-middle pt-10'>
               <h1 className='font-bold text-orange-500 
                 text-3xl' >Username: {player.name}</h1>
             </div>
@@ -108,13 +120,13 @@ const Cards = () => {
             <p className=' font-bold text-center text-white text-xl'>Last Played: {player.lastplay.substring(0,10)}</p>
           </div>
         
-          <div className="Card1 pt-10 h-[70vh] w-[40vw] bg-gray-800 border-none rounded-xl">
+          <div className="mb-4 Card pt-10 h-[70vh] w-[40vw] bg-gray-800 border-none rounded-xl">
             {/* SEARCHER */}
 
             <div className='text-center'>
-              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Player Rank' className='text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
+              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Player Rank' className='input text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
             </div>
-            {/* CARD 1 */}
+            {/* CARD 2 */}
             <div className=' flex justify-center align-middle pt-10'>
               <h1 className='font-bold text-orange-500 
                 text-3xl' >Username: {player2.name}</h1>
@@ -125,13 +137,19 @@ const Cards = () => {
             <p className=' font-bold text-center text-white text-xl'>Maps Completed: {player2.mapscompleted}</p>
             <p className=' font-bold text-center text-white text-xl'>VIP Status: {player2.vip}</p>
             <p className=' font-bold text-center text-white text-xl'>First Played: {player2.firstseen.substring(0,10)}</p>
-            <p className=' font-bold text-center text-white text-xl'>Last Played: {player2.lastplay.substring(0,10)}</p>
+            <p className='font-bold text-center text-white text-xl'>Last Played: {player2.lastplay.substring(0,10)}</p>
+          </div>
           </div>
 
 
 
         </div>
+       
+          
+          
+        
       </div>
+      <Footer />
     </>
   )
 }
