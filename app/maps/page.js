@@ -12296,7 +12296,7 @@ const InputRef2 = useRef()
     if ( typeof(inputValue) ==="string" & inputValue !== "") {
       fetchData(inputValue);
     } else {
-      alert("Please make sure the map name is correct.");
+      alert("Please make sure the Map  Name is correct.");
       InputRef.current.value = "";
     }
   };
@@ -12305,7 +12305,7 @@ const InputRef2 = useRef()
     if (typeof(inputValue) ==="string" &  inputValue !== "") {
       fetchData2(inputValue);
     } else {
-      alert("Please make sure the map name is correct.");
+      alert("Please make sure the Map  Name is correct.");
       InputRef2.current.value = "";
     }
   };
@@ -12319,13 +12319,13 @@ const InputRef2 = useRef()
       const data = await response.json();
       console.log(data)
      if (data.length === 0){
-      alert("Error, enter an approriate map name");
+      alert("Error, enter an approriate Map  Name");
      }
      else{
       setMap(data[0])
      }
     } catch (error) {
-      alert("Error, enter an approriate map name");
+      alert("Error, enter an approriate Map  Name");
     }
     
     InputRef.current.value = ""
@@ -12336,13 +12336,13 @@ const InputRef2 = useRef()
       const data = await response.json();
       console.log(data)
      if (data.length === 0){
-      alert("Error, enter an approriate map name");
+      alert("Error, enter an approriate Map  Name");
      }
      else{
       setMap2(data[0])
      }
     } catch (error) {
-      alert("Error, enter an approriate map name");
+      alert("Error, enter an approriate Map  Name");
     }
     
     InputRef2.current.value = ""
@@ -12376,7 +12376,7 @@ const InputRef2 = useRef()
             {/* CARD 1 */}
             <div className='main-card flex justify-center align-middle pt-10'>
               <h1 className='font-bold text-orange-500 
-                text-3xl' >Map name: {map.map}</h1>
+                text-3xl' >Map: {map.map}</h1>
             </div>
             <p className=' font-bold text-center text-white text-xl'>Made by: {map.author}</p>
             <p className=' font-bold text-center text-white text-xl'>Tier: {map.tier}</p>
@@ -12391,12 +12391,12 @@ const InputRef2 = useRef()
             {/* SEARCHER */}
 
             <div className='text-center'>
-              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Map Name' className='input text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
+              <div className='flex align-middle justify-center'><img className='relative left-6' src="magnify.svg" width={20} alt="Not Found" /><input ref={InputRef2} type="text" placeholder='Enter Map  Name' className='input text-center rounded-xl w-[15vw]' /><button onClick={handleClick2} className='bg-orange-500 p-2 border-none rounded-full ml-3 text-white font-bold text-center'>Search </button></div>
             </div>
             {/* CARD 2 */}
             <div className=' flex justify-center align-middle pt-10'>
               <h1 className='font-bold text-orange-500 
-                text-3xl' >Map name: {map2.map}</h1>
+                text-3xl' >Map: {map2.map}</h1>
             </div>
             <p className=' font-bold text-center text-white text-xl'>Made by: {map2.author}</p>
             <p className=' font-bold text-center text-white text-xl'>Tier: {map2.tier}</p>

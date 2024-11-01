@@ -31,12 +31,12 @@
         align-items: center;
     }
     .Card{
-        width: 80vw;
+        width: 90vw;
         height: fit-content;
         padding-bottom: 5vh;
     }
     .input{
-        width: 35vw;
+        width: 60vw;
     }
 
 
