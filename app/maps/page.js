@@ -12410,9 +12410,9 @@ const InputRef2 = useRef()
 
 
         </div>
-        <Footer/>
+       
       </div>
-     
+      <Footer/>
     </>
   )
 }
